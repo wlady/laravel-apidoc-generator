@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\URL;
-use Mpociot\ApiDoc\Postman\CollectionWriter;
+use Mpociot\ApiDoc\Postman\ExtendedCollectionWriter;
 use Mpociot\ApiDoc\Tools\DocumentationConfig;
 use Mpociot\ApiDoc\Tools\Flags;
 use Mpociot\ApiDoc\Tools\Generator;
@@ -295,7 +295,7 @@ class GenerateDocumentation extends Command
      */
     private function generatePostmanCollection(Collection $routes)
     {
-        $writer = new CollectionWriter($routes, $this->baseUrl);
+        $writer = new ExtendedCollectionWriter($routes, $this->baseUrl);
 
         return $writer->getCollection();
     }
