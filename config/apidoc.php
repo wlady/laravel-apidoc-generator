@@ -181,7 +181,7 @@ return [
 
     'strategies' => [
         'metadata' => [
-            \Mpociot\ApiDoc\Strategies\Metadata\GetFromDocBlocks::class,
+            \Mpociot\ApiDoc\Strategies\Metadata\DocBlocksService::class,
         ],
         'bodyParameters' => [
             \Mpociot\ApiDoc\Strategies\BodyParameters\GetFromBodyParamTag::class,
@@ -193,7 +193,7 @@ return [
             \Mpociot\ApiDoc\Strategies\Responses\UseResponseTag::class,
             \Mpociot\ApiDoc\Strategies\Responses\UseResponseFileTag::class,
             \Mpociot\ApiDoc\Strategies\Responses\UseTransformerTags::class,
-            \Mpociot\ApiDoc\Strategies\Responses\ResponseCalls::class,
+            \Mpociot\ApiDoc\Strategies\Responses\ResponseCallsService::class,
         ],
     ],
 
