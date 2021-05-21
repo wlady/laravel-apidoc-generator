@@ -41,6 +41,7 @@ class DocBlocksService extends GetFromDocBlocks
             'title'             => $routeTitle ?: $methodDocBlock->getShortDescription(),
             'description'       => $methodDocBlock->getLongDescription()->getContents(),
             'authenticated'     => $this->getAuthStatusFromDocBlock($methodDocBlock->getTags()),
+            'deprecated'        => $this->getDeprecatedStatus($methodDocBlock->getTags()),
         ];
     }
 
@@ -109,5 +110,20 @@ class DocBlocksService extends GetFromDocBlocks
         }
 
         return $roles;
+    }
+
+    /**
+     * @param array $tags Tags in the method doc block
+     *
+     * @return string
+     */
+    protected function getDeprecatedStatus(array $tags)
+    {
+        $deprecatedTag = collect($tags)
+            ->first(function ($tag) {
+                return $tag instanceof Tag && strtolower($tag->getName()) === 'deprecated';
+            });
+
+        return (bool) $deprecatedTag;
     }
 }
